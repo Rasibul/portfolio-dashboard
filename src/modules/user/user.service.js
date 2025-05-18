@@ -36,7 +36,9 @@ const loginUser = async ({ email, password }) => {
     };
 };
 
-module.exports = {
+const userService = {
     registerUser,
     loginUser,
 };
+
+module.exports = userService;

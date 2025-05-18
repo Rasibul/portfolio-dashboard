@@ -1,11 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
-const { registerUser, loginUser } = require("./user.service");
 const catchAsync = require("../../utils/catchAsync");
 const sendResponse = require("../../utils/sendResponse");
+const userService = require("./user.service");
 
 
 const register = catchAsync(async (req, res) => {
-    const result = await registerUser(req.body);
+    const result = await userService.registerUser(req.body);
 
     sendResponse(res, {
         statusCode: StatusCodes.CREATED,
@@ -16,7 +16,7 @@ const register = catchAsync(async (req, res) => {
 });
 
 const login = catchAsync(async (req, res) => {
-    const result = await loginUser(req.body);
+    const result = await userService.loginUser(req.body);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -26,7 +26,9 @@ const login = catchAsync(async (req, res) => {
     });
 });
 
-module.exports = {
+const userController = {
     register,
     login,
 };
+
+module.exports = userController;

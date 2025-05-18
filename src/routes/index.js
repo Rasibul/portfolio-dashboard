@@ -1,12 +1,13 @@
 const express = require("express");
+const UserRoutes = require("../modules/user/user.routes");
 const router = express.Router();
 
-const TestRoutes = require("../modules/test/test.routes");
+
 
 const moduleRoutes = [
 	{
-		path: "/test",
-		route: TestRoutes,
+		path: "/user",
+		route: UserRoutes
 	},
 ];
 

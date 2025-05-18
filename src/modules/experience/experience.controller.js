@@ -43,7 +43,6 @@ const deleteExperience = catchAsync(async (req, res) => {
         statusCode: StatusCodes.OK,
         success: true,
         message: "Experience deleted successfully",
-        data: result,
     });
 });
 

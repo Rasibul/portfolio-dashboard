@@ -17,16 +17,16 @@ const getSingleBlog = async (id) => {
     return blog;
 };
 
-const updateBlog = async (id, data, userId) => {
-    const blog = await Blog.findOne({ _id: id, author: userId });
+const updateBlog = async (id, data) => {
+    const blog = await Blog.findOne({ _id: id });
     if (!blog) throw new AppError(StatusCodes.NOT_FOUND, "Not found or unauthorized");
 
     Object.assign(blog, data);
     return await blog.save();
 };
 
-const deleteBlog = async (id, userId) => {
-    const blog = await Blog.findOneAndDelete({ _id: id, author: userId });
+const deleteBlog = async (id) => {
+    const blog = await Blog.findOneAndDelete({ _id: id });
     if (!blog) throw new AppError(StatusCodes.NOT_FOUND, "Not found or unauthorized");
     return blog;
 };

@@ -1,12 +1,11 @@
 
 
 const { StatusCodes } = require("http-status-codes");
-const { createBlog, getAllBlogs, getSingleBlog, updateBlog, deleteBlog } = require("./blogs.service");
 const catchAsync = require("../../utils/catchAsync");
 const sendResponse = require("../../utils/sendResponse");
 
-exports.createBlog = catchAsync(async (req, res) => {
-    const blog = await createBlog(req.body, req.user._id);
+const createBlog = catchAsync(async (req, res) => {
+    const blog = await blogsService.createBlog(req.body, req.user._id);
     sendResponse(res, {
         statusCode: StatusCodes.CREATED,
         success: true,
@@ -15,8 +14,8 @@ exports.createBlog = catchAsync(async (req, res) => {
     });
 });
 
-exports.getAllBlogs = catchAsync(async (req, res) => {
-    const blogs = await getAllBlogs();
+const getAllBlogs = catchAsync(async (req, res) => {
+    const blogs = await blogsService.getAllBlogs();
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
@@ -25,8 +24,8 @@ exports.getAllBlogs = catchAsync(async (req, res) => {
     });
 });
 
-exports.getSingleBlog = catchAsync(async (req, res) => {
-    const blog = await getSingleBlog(req.params.id);
+const getSingleBlog = catchAsync(async (req, res) => {
+    const blog = await blogsService.getSingleBlog(req.params.id);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
@@ -35,8 +34,8 @@ exports.getSingleBlog = catchAsync(async (req, res) => {
     });
 });
 
-exports.updateBlog = catchAsync(async (req, res) => {
-    const blog = await updateBlog(req.params.id, req.body);
+const updateBlog = catchAsync(async (req, res) => {
+    const blog = await blogsService.updateBlog(req.params.id, req.body);
     console.log(blog);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
@@ -46,11 +45,20 @@ exports.updateBlog = catchAsync(async (req, res) => {
     });
 });
 
-exports.deleteBlog = catchAsync(async (req, res) => {
-    await deleteBlog(req.params.id);
+const deleteBlog = catchAsync(async (req, res) => {
+    await blogsService.deleteBlog(req.params.id);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
         message: "Blog deleted",
     });
 });
+
+const blogsController = {
+    createBlog,
+    getAllBlogs,
+    getSingleBlog,
+    updateBlog,
+    deleteBlog,
+};
+module.exports = blogsController;

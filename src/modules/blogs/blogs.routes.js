@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
-
-const { getAllBlogs, getSingleBlog, createBlog, updateBlog, deleteBlog } = require("./blogs.controller");
 const authMiddleware = require("../../middlewares/authMiddleware");
+const blogsController = require("./blogs.controller");
 
 // Public routes
-router.get("/", getAllBlogs);
-router.get("/:id", getSingleBlog);
+router.get("/", blogsController.getAllBlogs);
+router.get("/:id", blogsController.getSingleBlog);
 
 // Protected routes
-router.post("/create-blog", authMiddleware("admin"), createBlog);
-router.patch("/:id", authMiddleware("admin"), updateBlog);
-router.delete("/:id", authMiddleware("admin"), deleteBlog);
+router.post("/create-blog", authMiddleware("admin"), blogsController.createBlog);
+router.patch("/:id", authMiddleware("admin"), blogsController.updateBlog);
+router.delete("/:id", authMiddleware("admin"), blogsController.deleteBlog);
 
 const blogsRoutes = router;
 module.exports = blogsRoutes;

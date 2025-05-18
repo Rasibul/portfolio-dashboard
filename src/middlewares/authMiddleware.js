@@ -1,6 +1,7 @@
 const AppError = require("../errors/AppError");
 const { StatusCodes } = require("http-status-codes");
-const { verifyToken } = require("../helper/utils/tokenUtils");
+const { verifyToken } = require("../utils/tokenUtils");
+
 
 const authMiddleware = (...requiredRoles) => {
     return (req, res, next) => {

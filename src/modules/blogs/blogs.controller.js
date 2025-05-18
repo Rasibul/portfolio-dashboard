@@ -1,10 +1,12 @@
-const catchAsync = require("../utils/catchAsync");
-const sendResponse = require("../utils/sendResponse");
+
+
 const { StatusCodes } = require("http-status-codes");
-const blogService = require("../services/blogService");
+const { createBlog, getAllBlogs, getSingleBlog, updateBlog, deleteBlog } = require("./blogs.service");
+const catchAsync = require("../../utils/catchAsync");
+const sendResponse = require("../../utils/sendResponse");
 
 exports.createBlog = catchAsync(async (req, res) => {
-    const blog = await blogService.createBlog(req.body, req.user._id);
+    const blog = await createBlog(req.body, req.user._id);
     sendResponse(res, {
         statusCode: StatusCodes.CREATED,
         success: true,
@@ -14,7 +16,7 @@ exports.createBlog = catchAsync(async (req, res) => {
 });
 
 exports.getAllBlogs = catchAsync(async (req, res) => {
-    const blogs = await blogService.getAllBlogs();
+    const blogs = await getAllBlogs();
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
@@ -24,7 +26,7 @@ exports.getAllBlogs = catchAsync(async (req, res) => {
 });
 
 exports.getSingleBlog = catchAsync(async (req, res) => {
-    const blog = await blogService.getSingleBlog(req.params.id);
+    const blog = await getSingleBlog(req.params.id);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
@@ -34,7 +36,7 @@ exports.getSingleBlog = catchAsync(async (req, res) => {
 });
 
 exports.updateBlog = catchAsync(async (req, res) => {
-    const blog = await blogService.updateBlog(req.params.id, req.body, req.user._id);
+    const blog = await updateBlog(req.params.id, req.body, req.user._id);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
@@ -44,7 +46,7 @@ exports.updateBlog = catchAsync(async (req, res) => {
 });
 
 exports.deleteBlog = catchAsync(async (req, res) => {
-    await blogService.deleteBlog(req.params.id, req.user._id);
+    await deleteBlog(req.params.id, req.user._id);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,

@@ -1,6 +1,7 @@
-const Blog = require("../models/Blog");
-const AppError = require("../errors/AppError");
+
 const { StatusCodes } = require("http-status-codes");
+const Blog = require("./blogs.schema");
+const AppError = require("../../errors/AppError");
 
 const createBlog = async (data, userId) => {
     return await Blog.create({ ...data, author: userId });

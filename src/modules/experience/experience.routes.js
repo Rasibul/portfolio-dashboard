@@ -1,5 +1,6 @@
 const express = require("express");
 const authMiddleware = require("../../middlewares/authMiddleware");
+const experienceController = require("./experience.controller");
 const router = express.Router();
 
 router.get("/", experienceController.getExperiences);

@@ -18,7 +18,7 @@ const getExperiences = async () => {
         position: exp.position,
         description: exp.description,
         startDate: exp.startDate,
-        endDate: exp.endDate || "Present",
+        endDate: exp.endDate,
         createdAt: exp.createdAt,
         updatedAt: exp.updatedAt,
     }));

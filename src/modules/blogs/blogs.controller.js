@@ -3,7 +3,7 @@
 const { StatusCodes } = require("http-status-codes");
 const catchAsync = require("../../utils/catchAsync");
 const sendResponse = require("../../utils/sendResponse");
-
+const blogsService = require("./blogs.service");
 const createBlog = catchAsync(async (req, res) => {
     const blog = await blogsService.createBlog(req.body, req.user._id);
     sendResponse(res, {

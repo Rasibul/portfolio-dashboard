@@ -3,6 +3,7 @@ const UserRoutes = require("../modules/user/user.routes");
 const blogsRoutes = require("../modules/blogs/blogs.routes");
 const experienceRoutes = require("../modules/experience/experience.routes");
 const projectRoutes = require("../modules/project/project.routes");
+const skillRoutes = require("../modules/skills/skills.routes");
 const router = express.Router();
 
 
@@ -23,6 +24,10 @@ const moduleRoutes = [
 	{
 		path: "/project",
 		route: projectRoutes
+	},
+	{
+		path: "/skills",
+		route: skillRoutes
 	},
 ];
 

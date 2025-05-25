@@ -36,9 +36,15 @@ const loginUser = async ({ email, password }) => {
     };
 };
 
+const getProfile = async (user) => {
+    const foundUser = await User.findById(user._id).select("-password");
+    return foundUser;
+};
+
 const userService = {
     registerUser,
     loginUser,
+    getProfile
 };
 
 module.exports = userService;

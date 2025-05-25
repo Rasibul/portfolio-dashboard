@@ -26,9 +26,27 @@ const login = catchAsync(async (req, res) => {
     });
 });
 
+const getProfile = catchAsync(async (req, res) => {
+    console.log(req);
+    const result = await userService.getProfile(req.user);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "User profile retrieved successfully",
+        data: result,
+    });
+});
+
+
+
+
+
+
+
 const userController = {
     register,
     login,
+    getProfile,
 };
 
 module.exports = userController;
